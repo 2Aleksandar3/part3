@@ -35,7 +35,7 @@ let persons = [
     }
 ]
  
-
+console.log('evoovde')
 
 
 morgan.token('body', (req) => JSON.stringify(req.body))
@@ -63,16 +63,17 @@ app.post('/api/persons', (request, response) => {
     }
   }
   
-  const people = {
+  const people =new Person( {
     name: body.name,
     number: body.number,
     id: Math.floor(Math.random() * (99999 - persons.length + 1)) + persons.length,
-  }
+  })
   
   console.log(people.id)
   console.log(people)
-  persons=persons.concat(people)
-  response.json(people)
+  people.save().then(savedPerson => {
+    response.json(savedPerson)
+  })
 })
 
 app.get('/api/persons', (request, response) => {
