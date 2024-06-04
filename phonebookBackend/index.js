@@ -76,7 +76,8 @@ app.post('/api/persons', (request, response) => {
 })
 
 app.get('/api/persons', (request, response) => {
-  persons.find({}).then(persons=>{
+  
+  Person.find({}).then(persons=>{
     
       response.json(persons)  
     
