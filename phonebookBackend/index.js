@@ -104,14 +104,14 @@ app.get('/info', (request, response) => {
     .catch(error => next(error))
   })*/
   
-  app.delete('/api/persons/:id', (request, response,next) => {
+  /*app.delete('/api/persons/:id', (request, response,next) => {
     Person.findByIdAndDelete(request.params.id)
     .then(result => {
       response.status(204).end()
     })
     .catch(error => next(error))
     
-  })
+  })*/
 
   const PORT = process.env.PORT 
   app.listen(PORT, () => {
@@ -128,6 +128,15 @@ app.get('/info', (request, response) => {
       }
     })
     .catch(error => next(error))
+  })
+
+  app.delete('/api/persons/:id', (request, response,next) => {
+    Person.findByIdAndDelete(request.params.id)
+    .then(result => {
+      response.status(204).end()
+    })
+    .catch(error => next(error))
+    
   })
 
   const errorHandler = (error, request, response, next) => {
