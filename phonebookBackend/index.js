@@ -67,8 +67,8 @@ app.get('/api/persons', (request, response) => {
 app.get('/info', (request, response) => {
   var date = new Date()
   console.log(date)
-  console.log(persons.length)
-    response.send(`<p>Phonebook has info for ${persons.length} people <br/>${date}</p>`)
+  console.log(Person.length)
+    response.send(`<p>Phonebook has info for ${Person.length} people <br/>${date}</p>`)
   })
   
   /*app.get('/api/persons/:id', (request, response,next) => {
