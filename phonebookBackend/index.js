@@ -45,7 +45,7 @@ app.post('/api/persons', (request, response) => {
   const people =new Person( {
     name: body.name,
     number: body.number,
-    id: Math.floor(Math.random() * (99999 - persons.length + 1)) + persons.length,
+    id: Math.floor(Math.random() * (99999 - Person.length + 1)) + Person.length,
   })
   
   console.log(people.id)
