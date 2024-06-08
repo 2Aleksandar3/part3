@@ -33,9 +33,9 @@ app.post('/api/persons', (request, response) => {
       error: 'number missing' 
     })
   }
-  for (let i = 0; i < persons.length; i++){
+  for (let i = 0; i < Person.length; i++){
     
-    if(persons[i].name===body.name){
+    if(Person[i].name===body.name){
       return response.status(400).json({ 
         error: 'name already exists' 
       })
