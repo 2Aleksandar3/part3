@@ -48,8 +48,8 @@ app.post('/api/persons', (request, response) => {
     id: Math.floor(Math.random() * (99999 - Person.length + 1)) + Person.length,
   })
   
-  console.log(people.id)
-  console.log(people)
+  console.log(people.id,'people id in backend post')
+  console.log(people,'people list in backend post')
   people.save().then(savedPerson => {
     response.json(savedPerson)
   })
@@ -68,7 +68,7 @@ app.get('/info', (request, response) => {
   var date = new Date()
   console.log(date)
   console.log(Person.length)
-    response.send(`<p>Phonebook has info for ${Person.length} people <br/>${date}</p>`)
+    response.send(`<p>Phonebook has info for ${Person.length--} people <br/>${date}</p>`)
   })
   
   /*app.get('/api/persons/:id', (request, response,next) => {
