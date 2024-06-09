@@ -51,6 +51,7 @@ app.post('/api/persons', (request, response) => {
   console.log(people.id,'people id in backend post')
   console.log(people,'people list in backend post')
   people.save().then(savedPerson => {
+    console.log(savedPerson,'saved person in backend post')
     response.json(savedPerson)
   })
 })
