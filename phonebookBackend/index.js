@@ -33,14 +33,7 @@ app.post('/api/persons', (request, response) => {
       error: 'number missing' 
     })
   }
-  /*for (let i = 0; i < Person.length; i++){
-    
-    if(Person[i].name===body.name){
-      return response.status(400).json({ 
-        error: 'name already exists' 
-      })
-    }
-  }*/
+  
   
   const people =new Person( {
     name: body.name,
@@ -108,6 +101,21 @@ app.get('/info', (request, response) => {
       }
     })
     .catch(error => next(error))
+  })
+
+  app.put('/api/persons/:id', (request, response, next) => {
+    const body = request.body
+  
+    const people = {
+      name: body.name,
+    number: body.number,
+    }
+  
+    Person.findByIdAndUpdate(request.params.id, people, { new: true })
+      .then(updatedPerson => {
+        response.json(updatedPerson)
+      })
+      .catch(error => next(error))
   })
 
   app.delete('/api/persons/:id', (request, response,next) => {
