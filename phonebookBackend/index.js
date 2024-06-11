@@ -109,6 +109,7 @@ app.get('/info', (request, response) => {
     const people = {
       name: body.name,
     number: body.number,
+    
     }
   
     Person.findByIdAndUpdate(request.params.id, people, { new: true })
