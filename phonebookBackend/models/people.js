@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const mongoose = require('mongoose')
 require('dotenv').config()
 
@@ -27,7 +28,7 @@ const personSchema = new mongoose.Schema({
     minLength: 8,
     validate: {
       validator: function(nmbr) {
-        return /^\d{2,3}-\d+$/.test(nmbr);
+        return /^\d{2,3}-\d+$/.test(nmbr)
       },
       message: props => `${props.value} is not a valid phone number!`
     },

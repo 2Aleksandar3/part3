@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const http = require('http')
 const express = require('express')
 const morgan=require('morgan')
@@ -54,19 +55,19 @@ app.get('/api/persons', (request, response) => {
   
   Person.find({}).then(persons=>{
     
-      response.json(persons)  
+    response.json(persons)  
     
-})
+  })
 })
 
 app.get('/info', (request, response) => {
   var date = new Date()
   console.log(date)
   console.log(Person.length)
-    response.send(`<p>Phonebook has info for ${Person.length} people <br/>${date}</p>`)
-  })
+  response.send(`<p>Phonebook has info for ${Person.length} people <br/>${date}</p>`)
+})
   
-  /*app.get('/api/persons/:id', (request, response,next) => {
+/*app.get('/api/persons/:id', (request, response,next) => {
     Person.findById(request.params.id)
     .then(person => {
       if (person) {
@@ -78,7 +79,7 @@ app.get('/info', (request, response) => {
     .catch(error => next(error))
   })*/
   
-  /*app.delete('/api/persons/:id', (request, response,next) => {
+/*app.delete('/api/persons/:id', (request, response,next) => {
     Person.findByIdAndDelete(request.params.id)
     .then(result => {
       response.status(204).end()
@@ -87,13 +88,13 @@ app.get('/info', (request, response) => {
     
   })*/
 
-  const PORT = process.env.PORT 
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`)
-  })
+const PORT = process.env.PORT 
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`)
+})
 
-  app.get('/api/persons/:id', (request, response,next) => {
-    Person.findById(request.params.id)
+app.get('/api/persons/:id', (request, response,next) => {
+  Person.findById(request.params.id)
     .then(person => {
       if (person) {
         response.json(person)
@@ -102,45 +103,45 @@ app.get('/info', (request, response) => {
       }
     })
     .catch(error => next(error))
-  })
+})
 
-  app.put('/api/persons/:id', (request, response, next) => {
-    //const body = request.body
-    const { name, number } = request.body
+app.put('/api/persons/:id', (request, response, next) => {
+  //const body = request.body
+  const { name, number } = request.body
   
-    /*const people = {
+  /*const people = {
       name: body.name,
     number: body.number,
     
     }*/
   
-    Person.findByIdAndUpdate(request.params.id, { name, number } , { new: true, runValidators: true, context: 'query' })
-      .then(updatedPerson => {
-        response.json(updatedPerson)
-      })
-      .catch(error => next(error))
-  })
+  Person.findByIdAndUpdate(request.params.id, { name, number } , { new: true, runValidators: true, context: 'query' })
+    .then(updatedPerson => {
+      response.json(updatedPerson)
+    })
+    .catch(error => next(error))
+})
 
-  app.delete('/api/persons/:id', (request, response,next) => {
-    Person.findByIdAndDelete(request.params.id)
+app.delete('/api/persons/:id', (request, response,next) => {
+  Person.findByIdAndDelete(request.params.id)
     .then(result => {
       response.status(204).end()
     })
     .catch(error => next(error))
     
-  })
+})
 
-  const errorHandler = (error, request, response, next) => {
-    console.error(error.message)
+const errorHandler = (error, request, response, next) => {
+  console.error(error.message)
   
-    if (error.name === 'CastError') {
-      return response.status(400).send({ error: 'malformatted id' })
-    }else if (error.name === 'ValidationError') {
-      return response.status(400).json({ error: error.message })
-    } 
+  if (error.name === 'CastError') {
+    return response.status(400).send({ error: 'malformatted id' })
+  }else if (error.name === 'ValidationError') {
+    return response.status(400).json({ error: error.message })
+  } 
   
-    next(error)
-  }
+  next(error)
+}
   
   
-  app.use(errorHandler)
+app.use(errorHandler)
